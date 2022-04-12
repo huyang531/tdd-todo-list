@@ -1,12 +1,31 @@
 from selenium import webdriver
+import unittest
 
-# Edith has heard about a cool new online to-do app. She goes
-# to check out its homepage.
-browser = webdriver.Chrome()
-browser.get('http://localhost:8000')
 
-# She notices the page title and header metion to-do lists
-assert 'To-Do' in browser.title
+class NewVisitorTest(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.browser = webdriver.Chrome()
+        return super().setUp()
+
+    def tearDown(self) -> None:
+        self.browser.quit()
+        return super().tearDown()
+
+    def test_can_start_a_list_and_retrieve_it_later(self):
+
+        # Edith has heard about a cool new online to-do app. She goes
+        # to check out its homepage.
+        self.browser.get('http://localhost:8000')
+
+        # She notices the page title and header metion to-do lists
+        self.assertIn(
+            'To-Do', self.browser.title), "Browser title was: " + self.browser.title
+        self.fail('Test finished!')
+
+
+if __name__ == '__main__':
+    unittest.main(warnings='ignore')
 
 # She is invited to enter a to-do item straight away.
 
@@ -28,5 +47,3 @@ assert 'To-Do' in browser.title
 # She visits that URL—her to-do list is still there.
 
 # Satisfied, she goes back to sleep.
-
-browser.quit()
