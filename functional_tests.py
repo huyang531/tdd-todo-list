@@ -5,7 +5,7 @@ import unittest
 class NewVisitorTest(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.browser = webdriver.Chrome()
+        self.browser = webdriver.Remote()
         return super().setUp()
 
     def tearDown(self) -> None:
