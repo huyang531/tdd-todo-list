@@ -8,7 +8,7 @@ import time
 class NewVisitorTest(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.browser = webdriver.Remote()
+        self.browser = webdriver.Chrome()
         return super().setUp()
 
     def tearDown(self) -> None:
@@ -44,7 +44,8 @@ class NewVisitorTest(unittest.TestCase):
         table = self.browser.find_element(By.ID, 'id_list_table')
         rows = table.find_elements_by_tag_name('tr')
         self.assertTrue(
-            any(row.text == '1. Buy peacock feathers' for row in rows))
+            any(row.text == '1. Buy peacock feathers' for row in rows),
+            'New to-do item did not appear in table')  # add comment because otherwise it is vague
 
         self.fail('Test finished!')
 
