@@ -1,3 +1,4 @@
+from django.test import LiveServerTestCase
 from urllib import response
 from matplotlib.pyplot import ticklabel_format
 from selenium import webdriver
@@ -6,8 +7,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 
-
-class NewVisitorTest(unittest.TestCase):
+ # with LiveServerTestCase, you can run test with manage.py (without manually
+ # running the server) and separate each test
+class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self) -> None:
         self.browser = webdriver.Chrome()
@@ -30,7 +32,7 @@ class NewVisitorTest(unittest.TestCase):
 
         # Edith has heard about a cool new online to-do app. She goes
         # to check out its homepage.
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
         # She notices the page title and header metion to-do lists
         self.assertIn(
@@ -64,11 +66,6 @@ class NewVisitorTest(unittest.TestCase):
         self.check_for_row_in_list_table(
             '2. Use peacock feathers to make a fly')
 
-        self.fail('Test finished!')
-
-
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
 
 
 # Eidth wonders whether the site will remember her list. Then she sees
