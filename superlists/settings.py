@@ -26,7 +26,7 @@ SECRET_KEY = 'u4l%1h_e$wj$=3&+wja4@#3$eg)u9)$=)1fgotk0u@m^9u06jw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['120.77.14.228']
+ALLOWED_HOSTS = ['127.0.0.1', '120.77.14.228']
 
 
 # Application definition
@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'superlists.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, '../database/db.sqlite3'),
     }
 }
 
@@ -120,4 +120,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, '../static/')

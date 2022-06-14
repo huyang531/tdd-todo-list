@@ -17,7 +17,7 @@ from django.urls import path, re_path, include
 from lists import views as list_views
 from lists import urls as list_urls
 from django.conf.urls.static import static
-import settings
+from superlists import settings
 
 urlpatterns = [
     path('', list_views.home_page, name='home'),
