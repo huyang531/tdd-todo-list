@@ -16,8 +16,10 @@ Including another URLconf
 from django.urls import path, re_path, include
 from lists import views as list_views
 from lists import urls as list_urls
+from django.conf.urls.static import static
+import settings
 
 urlpatterns = [
     path('', list_views.home_page, name='home'),
     re_path(r'^lists/', include(list_urls))
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
