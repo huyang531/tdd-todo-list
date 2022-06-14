@@ -2,11 +2,11 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from urllib import response
 from matplotlib.pyplot import ticklabel_format
 from selenium import webdriver
-import unittest
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 from selenium.common.exceptions import WebDriverException
+import os
 
 MAX_WAIT = 10  # seconds
 
@@ -18,6 +18,9 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self) -> None:
         self.browser = webdriver.Chrome()
+        staging_server = os.environ.get('STAGING_SERVER')
+        if staging_server:
+            self.live_server_url = 'http://' + staging_server
         return super().setUp()
 
     def tearDown(self) -> None:
