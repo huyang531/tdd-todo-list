@@ -1,4 +1,4 @@
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from urllib import response
 from matplotlib.pyplot import ticklabel_format
 from selenium import webdriver
@@ -14,7 +14,7 @@ MAX_WAIT = 10  # seconds
 # running the server) and separate each test
 
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self) -> None:
         self.browser = webdriver.Chrome()
