@@ -3,4 +3,6 @@ __pycache__/
 
 # For macOS
 !/.gitignore
+**/.DS_Store
+geckodriver.log
 
